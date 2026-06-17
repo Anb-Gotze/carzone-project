@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.contrib import messages
 from .models import Team
 from cars.models import Car
+from django.contrib.auth.models import User
 
-# Create your views here.
 def home(request):
     teams = Team.objects.all()
-    featured_cars = Car.objects.order_by('created_date').filter(is_featured=True)
-    all_cars = Car.objects.order_by('created_date')
+    featured_cars = Car.objects.order_by('-created_date').filter(is_featured=True)
+    all_cars = Car.objects.order_by('-created_date')
     model_search = Car.objects.values_list('model', flat=True).distinct()
     city_search = Car.objects.values_list('city', flat=True).distinct()
     year_search = Car.objects.values_list('year', flat=True).distinct()
@@ -20,9 +22,9 @@ def home(request):
         'city_search': city_search,
         'year_search': year_search,
         'body_style_search': body_style_search,
-
     }
-    return render (request, 'pages/home.html', data)
+    return render(request, 'pages/home.html', data)
+
 
 def about(request):
     teams = Team.objects.all()
@@ -31,8 +33,42 @@ def about(request):
     }
     return render(request, 'pages/about.html', data)
 
+
 def services(request):
     return render(request, 'pages/services.html')
 
+
 def contact(request):
-    return render(request, 'pages/contact.html')
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        phone = request.POST['phone']
+        message = request.POST['message']
+
+        # FIX: Safely pull all superuser emails into a list using filter() instead of get()
+        admin_emails = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
+
+        # Fallback email in case no admin emails exist in your database
+        if not admin_emails:
+            admin_emails = ["abakwumegodwin1@gmail.com"]
+
+        # Compose email body
+        message_body = f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}"
+
+        email_subject = f"You have a new message from Carzone website regarding {subject}"
+
+        # Send the email to the full list of admin emails found
+        send_mail(
+            subject=email_subject,
+            message=message_body,
+            from_email="abakwumegodwin1@gmail.com",
+            recipient_list=admin_emails, # Passed the safe list here
+            fail_silently=False,
+        )
+
+        messages.success(request, 'Thank you for contacting us. We will get back to you shortly.')
+        return redirect('contact')
+
+    # If it's a GET request, render the contact page layout template
+    return render(request, 'pages/contact.html') # Adjust this path if your contact template is named differently
