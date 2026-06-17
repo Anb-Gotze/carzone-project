@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#3&3^@j&-)%53m-6sjkl@$s3all-es4*(cq7-sd^imv^&p(!wn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['carzone-project-1.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
