@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['carzone-project-1.onrender.com', 'localhost', '127.0.0.1']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -164,4 +163,4 @@ EMAIL_USE_TLS = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' 
