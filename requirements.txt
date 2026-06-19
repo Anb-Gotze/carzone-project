@@ -3,6 +3,7 @@ certifi==2026.5.20
 cffi==2.0.0
 charset-normalizer==3.4.7
 cryptography==49.0.0
+dj-database-url==3.0.1
 Django==6.0.6
 django-allauth==65.18.0
 django-ckeditor==6.7.3
@@ -19,3 +20,4 @@ PyJWT==2.13.0
 requests==2.34.2
 sqlparse==0.5.5
 urllib3==2.7.0
+whitenoise[brotli]==6.11.0
