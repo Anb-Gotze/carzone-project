@@ -149,14 +149,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/6.0/howto/static-files/
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'carzone' / 'static',
 ]
 
-# Prevent WhiteNoise from crashing on missing source maps (like popper.min.js.map)
-WHITENOISE_MANIFEST_STRICT = False
 STATIC_ROOT = BASE_DIR / 'staticfiles'  
 
 STORAGES = {
@@ -164,7 +165,7 @@ STORAGES = {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
     },
     'staticfiles': {
-        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
     },
 }
 
