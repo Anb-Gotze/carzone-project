@@ -112,13 +112,7 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=(
-            f"postgresql://{os.environ.get('DB_USER', 'admin')}:"
-            f"{os.environ.get('DB_PASSWORD', '0701334')}@"
-            f"{os.environ.get('DB_HOST', 'localhost')}:"
-            f"{os.environ.get('DB_PORT', '5432')}/"
-            f"{os.environ.get('DB_NAME', 'carzone_db')}"
-        ),
+        default='postgresql://carzone_c9f3_user:sf6wlVX1K5PlSTpBu7pKnXGt5jU9fyuQ@dpg-d8p8qj8g4nts73fn8e8g-a/carzone_c9f3',
         conn_max_age=600,
     )
 }
