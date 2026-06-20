@@ -23,8 +23,8 @@ def create_emergency_admin(request):
 # -----------------------------------
 
 urlpatterns = [
-    path('setup-admin-key/', create_emergency_admin), # <-- Keep this line here
     path('admin/', admin.site.urls),
+    path('setup-admin-key/', create_emergency_admin), # <-- Keep this line here
     path('', include('pages.urls')),
     path('cars/', include('cars.urls')),
     path('accounts/', include('accounts.urls')),
