@@ -30,17 +30,22 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true' and not os.environ.get('RENDER')
 
-ALLOWED_HOSTS = ['carzone-project-1.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'carzone-project-4.onrender.com',
+    'carzone-project-1.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://carzone-project-4.onrender.com',
     'https://carzone-project-1.onrender.com',
 ]
 if RENDER_EXTERNAL_HOSTNAME:
     CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_EXTERNAL_HOSTNAME}')
-
 # Application definition
 
 INSTALLED_APPS = [
