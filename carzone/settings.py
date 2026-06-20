@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true' and not os.environ.get('RENDER')
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'carzone-project-4.onrender.com',
