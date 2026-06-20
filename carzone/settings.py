@@ -155,6 +155,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'carzone' / 'static',
 ]
 
+# Prevent WhiteNoise from crashing on missing source maps (like popper.min.js.map)
+WHITENOISE_MANIFEST_STRICT = False
 STATIC_ROOT = BASE_DIR / 'staticfiles'  
 
 STORAGES = {
